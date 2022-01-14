@@ -1,0 +1,17 @@
+version: 1
+commands:
+- name: eks-stack-install
+  description: Intall the EKS stack required by the pipeline.
+  steps:
+  - scripts:
+    - apk update && apk add make bash curl unzip openssl binutils 
+    - apk add --update --no-cache build-base python3-dev python3 libffi-dev libressl-dev bash git gettext curl
+    - curl -O https://bootstrap.pypa.io/get-pip.py
+    - python3 get-pip.py
+    - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    - chmod +x ./kubectl
+    - mv ./kubectl /usr/local/bin
+    - curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+    - chmod 700 get_helm.sh
+    - ./get_helm.sh 
+    - pip install --upgrade six awscli awsebcli

@@ -1,0 +1,10 @@
+version: 1
+commands:
+- name: eks-stack-configure
+  description: Configure the EKS stack.
+  steps:
+  - scripts:
+    - aws configure set aws_access_key_id $NITRO_BIT_AWS_ACCESS_KEY
+    - aws configure set aws_secret_access_key $NITRO_BIT_AWS_SECRET_ACCESS
+    - aws ecr get-login-password --region $NITRO_BIT_AWS_REGION | docker login --username AWS --password-stdin $NITRO_BIT_DOCKER_REGISTRY
+    - aws eks --region $NITRO_BIT_AWS_REGION update-kubeconfig --name $NITRO_BIT_AWS_EKS_CLUSTER_NAME

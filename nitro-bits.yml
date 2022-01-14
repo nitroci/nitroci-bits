@@ -1,0 +1,10 @@
+- name: eks-stack-install
+  path: bits/eks-stack-apt-install.yml
+- name: eks-stack-apt-install
+  path: bits/eks-stack-apt-install.yml
+- name: eks-stack-apk-install
+  path: bits/eks-stack-apk-install.yml
+- name: eks-stack-configure
+  path: bits/eks-stack-configure.yml
+- name: eks-stack-deploy
+  path: bits/eks-stack-deploy.yml
